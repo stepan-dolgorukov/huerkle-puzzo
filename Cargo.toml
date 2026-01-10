@@ -9,3 +9,11 @@ name = "hupu"
 path = "main.rs"
 
 [dependencies]
+aes-gcm = "0.10"
+pbkdf2  = "0.12"
+rand    = "0.8"
+serde   = { version = "1", features = ["derive"] }
+bincode = "1"
+clap    = { version = "4", features = ["derive"] }
+hex     = "0.4"
+sha2    = "0.10"
