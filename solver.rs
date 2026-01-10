@@ -14,11 +14,21 @@ fn derive_key(password: &str) -> [u8; 32] {
   key
 }
 
+fn hex_no_leading_zeros(bytes: &[u8]) -> String {
+    let first_nonzero = bytes.iter().position(|&b| b != 0).unwrap_or(bytes.len());
+    let trimmed = &bytes[first_nonzero..];
+    if trimmed.is_empty() {
+      "0".to_string()
+    } else {
+      hex::encode(trimmed)
+    }
+}
+
 pub fn solve(puzzle: [u8; 24], password_length: u8) {
   for password_as_number in 0..(1u32 << (password_length * 8)) {
     // println!("{}", password_as_number);
-    let password = hex::encode(password_as_number.to_be_bytes());
-    // println!("{}", password);
+    let password = hex_no_leading_zeros(&password_as_number.to_be_bytes());
+    println!("{}", password);
     let key = derive_key(&password);
     let cipher = Aes256Gcm::new_from_slice(&key).unwrap();
     let nonce= Nonce::from_slice(&[0u8; 12]);
