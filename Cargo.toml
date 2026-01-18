@@ -3,6 +3,7 @@ name    = "huerkle-puzzo"
 version = "0.1.0"
 edition = "2024"
 license = "MIT"
+authors = ["Stepan Dolgorukov <dolgorukovpro@gmail.com>"]
 
 [[bin]]
 name = "hupu"
